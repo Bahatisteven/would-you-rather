@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Would You Rather: Debate Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen active">
+        <div class="container">
+            <div class="game-header">
+                <h1 class="game-title">🎭 Would You Rather</h1>
+                <h2 class="game-subtitle">Debate Edition</h2>
+                <p class="game-description">The ultimate two-player debate showdown</p>
+            </div>
+            
+            <div class="player-setup">
+                <div class="input-group">
+                    <label for="player1Name">Player 1 Name</label>
+                    <input type="text" id="player1Name" placeholder="Enter name" maxlength="20">
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="input-group">
+                    <label for="player2Name">Player 2 Name</label>
+                    <input type="text" id="player2Name" placeholder="Enter name" maxlength="20">
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-large" onclick="startGame()">Start Game</button>
+            
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="icon">🎯</span>
+                    <span>10 Rounds</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🤖</span>
+                    <span>AI Judging</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🏆</span>
+                    <span>Winner Takes All</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <div class="game-header-bar">
+            <div class="round-indicator">
+                Round <span id="currentRound">1</span> of <span id="totalRounds">10</span>
+            </div>
+            <div class="score-display">
+                <div class="player-score player1-score">
+                    <span class="player-name" id="p1ScoreName">Player 1</span>
+                    <span class="score" id="player1Score">0</span>
+                </div>
+                <div class="score-divider">|</div>
+                <div class="player-score player2-score">
+                    <span class="player-name" id="p2ScoreName">Player 2</span>
+                    <span class="score" id="player2Score">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="dilemma-card">
+                <h2 class="dilemma-question" id="dilemmaQuestion"></h2>
+            </div>
+
+            <div class="players-grid">
+                <!-- Player 1 -->
+                <div class="player-panel player1-panel">
+                    <div class="player-header">
+                        <h3 id="p1Name">Player 1</h3>
+                        <div class="player-badge">🔵</div>
+                    </div>
+                    
+                    <div class="options-group">
+                        <button class="option-btn" data-player="1" data-option="A">
+                            <span class="option-letter">A</span>
+                            <span class="option-text" id="optionA1"></span>
+                        </button>
+                        <button class="option-btn" data-player="1" data-option="B">
+                            <span class="option-letter">B</span>
+                            <span class="option-text" id="optionB1"></span>
+                        </button>
+                    </div>
+
+                    <div class="justification-area">
+                        <label>Why did you choose this?</label>
+                        <textarea id="p1Justification" placeholder="Explain your reasoning... Be persuasive!" maxlength="500"></textarea>
+                        <div class="char-count"><span id="p1CharCount">0</span>/500</div>
+                    </div>
+
+                    <button class="btn btn-submit" id="p1SubmitBtn" onclick="submitAnswer(1)">Submit Answer</button>
+                    <div class="submitted-indicator" id="p1Submitted">✓ Submitted</div>
+                </div>
+
+                <!-- Player 2 -->
+                <div class="player-panel player2-panel">
+                    <div class="player-header">
+                        <h3 id="p2Name">Player 2</h3>
+                        <div class="player-badge">🔴</div>
+                    </div>
+                    
+                    <div class="options-group">
+                        <button class="option-btn" data-player="2" data-option="A">
+                            <span class="option-letter">A</span>
+                            <span class="option-text" id="optionA2"></span>
+                        </button>
+                        <button class="option-btn" data-player="2" data-option="B">
+                            <span class="option-letter">B</span>
+                            <span class="option-text" id="optionB2"></span>
+                        </button>
+                    </div>
+
+                    <div class="justification-area">
+                        <label>Why did you choose this?</label>
+                        <textarea id="p2Justification" placeholder="Explain your reasoning... Be persuasive!" maxlength="500"></textarea>
+                        <div class="char-count"><span id="p2CharCount">0</span>/500</div>
+                    </div>
+
+                    <button class="btn btn-submit" id="p2SubmitBtn" onclick="submitAnswer(2)">Submit Answer</button>
+                    <div class="submitted-indicator" id="p2Submitted">✓ Submitted</div>
+                </div>
+            </div>
+
+            <div class="waiting-message" id="waitingMessage">
+                Waiting for both players to submit...
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="container">
+            <h2 class="results-title">Round <span id="resultsRound">1</span> Results</h2>
+            
+            <div class="results-grid">
+                <!-- Player 1 Results -->
+                <div class="result-panel player1-result">
+                    <div class="result-header">
+                        <h3 id="r1Name">Player 1</h3>
+                        <div class="result-badge">🔵</div>
+                    </div>
+                    
+                    <div class="choice-display">
+                        <strong>Choice:</strong> <span id="r1Choice"></span>
+                    </div>
+                    
+                    <div class="justification-display">
+                        <strong>Argument:</strong>
+                        <p id="r1Justification"></p>
+                    </div>
+                    
+                    <div class="score-breakdown">
+                        <h4>Score Breakdown</h4>
+                        <div class="score-item">
+                            <span>Clarity & Logic</span>
+                            <span class="points" id="r1Clarity">0/3</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Examples & Details</span>
+                            <span class="points" id="r1Examples">0/3</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Creativity</span>
+                            <span class="points" id="r1Creativity">0/2</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Effort</span>
+                            <span class="points" id="r1Effort">0/2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-list" id="r1Feedback"></div>
+                    
+                    <div class="total-score">
+                        <strong>Round Score:</strong>
+                        <span class="big-score" id="r1Total">0</span>/10
+                    </div>
+                </div>
+
+                <!-- Player 2 Results -->
+                <div class="result-panel player2-result">
+                    <div class="result-header">
+                        <h3 id="r2Name">Player 2</h3>
+                        <div class="result-badge">🔴</div>
+                    </div>
+                    
+                    <div class="choice-display">
+                        <strong>Choice:</strong> <span id="r2Choice"></span>
+                    </div>
+                    
+                    <div class="justification-display">
+                        <strong>Argument:</strong>
+                        <p id="r2Justification"></p>
+                    </div>
+                    
+                    <div class="score-breakdown">
+                        <h4>Score Breakdown</h4>
+                        <div class="score-item">
+                            <span>Clarity & Logic</span>
+                            <span class="points" id="r2Clarity">0/3</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Examples & Details</span>
+                            <span class="points" id="r2Examples">0/3</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Creativity</span>
+                            <span class="points" id="r2Creativity">0/2</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Effort</span>
+                            <span class="points" id="r2Effort">0/2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-list" id="r2Feedback"></div>
+                    
+                    <div class="total-score">
+                        <strong>Round Score:</strong>
+                        <span class="big-score" id="r2Total">0</span>/10
+                    </div>
+                </div>
+            </div>
+
+            <div class="round-winner" id="roundWinner"></div>
+
+            <div class="current-standings">
+                <h3>Current Standings</h3>
+                <div class="standings-display">
+                    <div class="standing-item">
+                        <span id="standingP1Name">Player 1</span>
+                        <span class="standing-score" id="standingP1Score">0</span>
+                    </div>
+                    <div class="standing-divider">-</div>
+                    <div class="standing-item">
+                        <span id="standingP2Name">Player 2</span>
+                        <span class="standing-score" id="standingP2Score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-large" id="nextRoundBtn" onclick="nextRound()">Next Round</button>
+        </div>
+    </div>
+
+    <!-- Final Results Screen -->
+    <div id="finalScreen" class="screen">
+        <div class="container">
+            <h1 class="final-title">🎊 Final Results 🎊</h1>
+            
+            <div class="winner-announcement" id="winnerAnnouncement"></div>
+            
+            <div class="final-scores">
+                <div class="final-score-card winner-card" id="finalWinnerCard">
+                    <div class="crown">👑</div>
+                    <h2 id="finalWinnerName">Player 1</h2>
+                    <div class="final-points" id="finalWinnerScore">0</div>
+                    <p class="final-label">Total Points</p>
+                </div>
+                
+                <div class="final-score-card" id="finalLoserCard">
+                    <h2 id="finalLoserName">Player 2</h2>
+                    <div class="final-points" id="finalLoserScore">0</div>
+                    <p class="final-label">Total Points</p>
+                </div>
+            </div>
+
+            <div class="game-summary" id="gameSummary"></div>
+
+            <button class="btn btn-primary btn-large" onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
