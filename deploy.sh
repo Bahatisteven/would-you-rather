@@ -2,13 +2,13 @@
 
 # Would You Rather: Debate Edition - Quick Deploy Script
 
-echo "🎭 Would You Rather: Debate Edition - Deployment Helper"
+echo "Would You Rather: Debate Edition - Deployment Helper"
 echo "========================================================"
 echo ""
 
 # Check if files exist
 if [ ! -f "index.html" ] || [ ! -f "styles.css" ] || [ ! -f "script.js" ]; then
-    echo "❌ Error: Required files not found!"
+    echo " Error: Required files not found!"
     echo "   Make sure you're in the project directory."
     exit 1
 fi
@@ -17,11 +17,11 @@ echo "✅ All required files found!"
 echo ""
 echo "Choose your deployment method:"
 echo ""
-echo "1. 🖥️  Test Locally (Python Server)"
-echo "2. 📦 Deploy to Netlify (drag & drop)"
-echo "3. 🚀 Deploy to Vercel"
-echo "4. 📘 Deploy to GitHub Pages"
-echo "5. ℹ️  Show deployment instructions"
+echo "1.  Test Locally (Python Server)"
+echo "2.  Deploy to Netlify (drag & drop)"
+echo "3.  Deploy to Vercel"
+echo "4.  Deploy to GitHub Pages"
+echo "5. ℹShow deployment instructions"
 echo ""
 
 read -p "Enter your choice (1-5): " choice
@@ -30,8 +30,8 @@ case $choice in
     1)
         echo ""
         echo "🚀 Starting local server..."
-        echo "📍 Open your browser to: http://localhost:8000"
-        echo "⏹️  Press Ctrl+C to stop the server"
+        echo " Open your browser to: http://localhost:8000"
+        echo " Press Ctrl+C to stop the server"
         echo ""
         python3 -m http.server 8000
         ;;
@@ -47,7 +47,7 @@ case $choice in
         ;;
     3)
         echo ""
-        echo "🚀 Vercel Deployment:"
+        echo " Vercel Deployment:"
         if ! command -v vercel &> /dev/null; then
             echo "Installing Vercel CLI..."
             npm i -g vercel
@@ -57,7 +57,7 @@ case $choice in
         ;;
     4)
         echo ""
-        echo "📘 GitHub Pages Deployment:"
+        echo " GitHub Pages Deployment:"
         echo ""
         echo "1. Create a new repository on GitHub"
         echo "2. Run these commands:"
@@ -75,7 +75,7 @@ case $choice in
         ;;
     5)
         echo ""
-        echo "📚 Deployment Instructions:"
+        echo " Deployment Instructions:"
         echo ""
         echo "This is a static web application with no backend dependencies."
         echo "You can deploy it to ANY static hosting service!"
