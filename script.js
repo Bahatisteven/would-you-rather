@@ -3,7 +3,7 @@ const gameState = {
     player1Name: '',
     player2Name: '',
     currentRound: 0,
-    totalRounds: 10,
+    totalRounds: 11,
     player1Score: 0,
     player2Score: 0,
     player1Choice: null,
@@ -62,6 +62,11 @@ const gameState = {
             question: "Would you rather be famous during your lifetime but forgotten after death OR unknown during life but remembered for centuries?",
             optionA: "Famous now, forgotten later",
             optionB: "Unknown now, remembered forever"
+        },
+        {
+            question: "Would you rather have the power to stop time OR the power to rewind time by 10 minutes?",
+            optionA: "Stop time completely",
+            optionB: "Rewind time by 10 minutes"
         }
     ]
 };

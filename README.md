@@ -8,7 +8,7 @@ An interactive web-based two-player debate game where players face thought-provo
 
 ## Features
 
-- **10 Thought-Provoking Dilemmas** - From mind-reading vs invisibility to fame vs legacy
+- **11 Thought-Provoking Dilemmas** - From mind-reading vs invisibility to time manipulation
 -  **AI-Powered Evaluation** - Arguments scored on clarity, creativity, logic, and persuasiveness  
 -  **Real-Time Scoring** - Track points throughout the game with beautiful visual indicators
 -  **Modern UI Design** - Clean, responsive interface that works on mobile and desktop
@@ -92,7 +92,7 @@ Works with any static hosting service:
 3. **Choose & Justify**: Each player independently selects an option and explains why
 4. **AI Evaluation**: Arguments are scored on multiple criteria
 5. **See Results**: Round winner announced with detailed score breakdown
-6. **Final Champion**: After 10 rounds, the overall winner is crowned!
+6. **Final Champion**: After 11 rounds, the overall winner is crowned!
 
 ## Scoring System
 
