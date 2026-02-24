@@ -67,6 +67,11 @@ const gameState = {
             question: "Would you rather have the power to stop time OR the power to rewind time by 10 minutes?",
             optionA: "Stop time completely",
             optionB: "Rewind time by 10 minutes"
+        },
+        {
+            question: "Would you rather always know the truth about everything OR live blissfully ignorant but happy?",
+            optionA: "Know the truth always",
+            optionB: "Live blissfully ignorant"
         }
     ]
 };
