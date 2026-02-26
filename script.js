@@ -3,7 +3,7 @@ const gameState = {
     player1Name: '',
     player2Name: '',
     currentRound: 0,
-    totalRounds: 11,
+    totalRounds: 12,
     player1Score: 0,
     player2Score: 0,
     player1Choice: null,
@@ -72,6 +72,11 @@ const gameState = {
             question: "Would you rather always know the truth about everything OR live blissfully ignorant but happy?",
             optionA: "Know the truth always",
             optionB: "Live blissfully ignorant"
+        },
+        {
+            question: "Would you rather have the ability to fly OR the ability to breathe underwater?",
+            optionA: "Ability to fly",
+            optionB: "Breathe underwater"
         }
     ]
 };

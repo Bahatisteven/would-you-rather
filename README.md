@@ -8,7 +8,7 @@ An interactive web-based two-player debate game where players face thought-provo
 
 ## Features
 
-- **11 Thought-Provoking Dilemmas** - From mind-reading vs invisibility to time manipulation
+- **12 Thought-Provoking Dilemmas** - From mind-reading vs invisibility to time manipulation
 -  **AI-Powered Evaluation** - Arguments scored on clarity, creativity, logic, and persuasiveness  
 -  **Real-Time Scoring** - Track points throughout the game with beautiful visual indicators
 -  **Modern UI Design** - Clean, responsive interface that works on mobile and desktop
